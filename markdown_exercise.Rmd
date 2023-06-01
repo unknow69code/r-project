@@ -4,26 +4,14 @@ author: "Ricardo Andrés Rojas Rico y José Manuel Mendoza Vásquez"
 date: "2023-05-29"
 output: html_document
 ---
-El valor de p para la variable "edad" en el modelo de regresión es extremadamente bajo (p-valor: 4.635e-11), lo que indica que la relación entre la edad y la altura es estadísticamente significativa.
-
-Al observar el resumen del modelo, podemos ver que el coeficiente de regresión para la variable "edad" es 5.5448, lo que implica que, en promedio, por cada aumento de un año en la edad, la altura aumenta en aproximadamente 5.5448 unidades.
-
-El coeficiente de determinación (R-cuadrado) del modelo es de 0.8656, lo que significa que alrededor del 86.56% de la variabilidad en la altura se puede explicar por la edad.
-
-Según el análisis de regresión, la edad tiene una relación significativa con la altura y se puede afirmar que la altura depende de la edad en este conjunto de datos.
-
 ```{r}
-file <- "Database.txt"
+file <- "Database_copy.txt"
 
 datos <- read.table(file=file, header=TRUE)
-
-plot(datos)
 # head(datos, n=18) # shows the first 6 rows   
 
 altura <- read.table(file=file, header = TRUE)
-
 names(altura)
-
 
 
 pairs(altura)
@@ -32,6 +20,7 @@ cor(altura)
 regresion <- lm(edad ~ altura, data = datos)
 summary(regresion)
 
+plot(altura$edad, altura$altura, xlab='Edad', ylab='Altura')
 abline(regresion)
 
 # El coeficiente de determinación (es decir, el coeficiente de correlación al cuadrado) mide la bondad del ajuste de la recta a los datos. A partir de la salida anterior, vemos que su valor en este caso es Multiple R-squared: 0.701.

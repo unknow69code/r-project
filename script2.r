@@ -1,8 +1,6 @@
-file <- "C:/Users/rojas/Downloads/r-statistic/Database.txt"
+file <- "Database_copy.txt"
 
-datos <- read.table(file=file, header=TRUE)
-
-head(datos) # shows the first 6 rows   
+datos <- read.table(file=file, header=TRUE)   
 
 altura <- read.table(file=file, header = TRUE)
 
@@ -11,10 +9,10 @@ names(altura)
 pairs(altura)
 
 cor(altura)
-regresion <- lm(altura ~ edad, data = altura)
+regresion <- lm(edad ~ altura, data = altura)
 summary(regresion)
 
-
+plot(edad,altura)
 plot(altura$edad, altura$altura, xlab='Edad', ylab='Altura')
 abline(regresion)
 
@@ -33,7 +31,6 @@ plot(valores.ajustados, residuos)
 # No se observa ningún patrón especial, por lo que tanto la homocedasticidad como la linealidad resultan hipótesis razonables.
 
 # La hipótesis de normalidad se suele comprobar mediante un QQ plot de los residuos. El siguiente código sirve para obtenerlo:
-
 qqnorm(residuos)
 qqline(residuos)
 # Dado que los puntos están bastante alineados, la normalidad también parece aceptable.
